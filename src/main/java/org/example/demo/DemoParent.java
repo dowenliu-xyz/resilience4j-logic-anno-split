@@ -1,0 +1,13 @@
+package org.example.demo;
+
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+
+public class DemoParent {
+    @CircuitBreaker(name = "demo", fallbackMethod = "fallbackBySuper")
+    public String greeting(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalStateException("name should not be null or blank");
+        }
+        return "Parent: Hello, " + name + "!";
+    }
+}
